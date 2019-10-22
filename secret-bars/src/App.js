@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react'
+import {Link, Route, Switch} from 'react-router-dom'
 import './App.css';
+import Home from './components/Home/Home'
+import Bars from './components/Bars/Bars'
+import OneBar from './components/OneBar/OneBar'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+export class App extends Component {
+  
+  render() {
+    return (
+      <div>
+        <nav>
+          <Link to ='/' >Home</Link>
+          <Link to ='/Bars/:name'> Bars </Link> 
+          {/* <Link to ='/OneBar'> Bar </Link>  */}
+        </nav>
+        <Switch>
+          <Route exact path ='/' component={Home}/>
+          <Route path ='/myList' component ={Bars}/>
+          <Route path ='/Bars/:name' component ={Bars}/>
+          <Route 
+          path ='/OneBar/:name'
+          render={routerProps => (
+            <OneBar
+            match={routerProps.match}
+            />
+          )}
+          /> 
+          
+        </Switch>
+    
+      </div>
+    )
+  }
 }
 
-export default App;
+export default App
