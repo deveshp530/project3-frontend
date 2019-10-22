@@ -2,7 +2,7 @@
 //has some info on bar and has option to delete
 
 import React, { Component } from "react";
-import BarsData from '../../data/BarsSeeds.json'
+//import BarsData from '../../data/BarsSeeds.json'
 
 export class Bar extends Component {
 

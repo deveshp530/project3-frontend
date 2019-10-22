@@ -1,0 +1,27 @@
+[
+    {
+        "name": "Jims Cocktail Lounge",
+        "text": "What a bar!",
+        "url": "https://www.yelp.com/biz/jims-cocktail-lounge-union-city",
+        "user":[
+            {
+                "username": "devesh",
+                "email": "deveshp530@gmail.com",
+                "favorites": ["jims cafe"]
+            }
+        ]
+    },
+    {
+        "name": "Tiger Town Tavern",
+        "test": "dope, bar",
+        "url": "https://www.yelp.com/biz/jims-cocktail-lounge-union-city",
+        "user":[
+            {
+                "username": "aaron",
+                "email": "aaron@email.com",
+                "favorites": ["Tiger Town Tavern"]
+            }
+        ]
+    }
+   
+]
