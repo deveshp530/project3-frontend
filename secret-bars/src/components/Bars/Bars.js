@@ -3,11 +3,10 @@
 // import ShowPage from '../ShowPage/ShowPage'
 // import {Link} from 'react-router-dom'
 
-// export class Bars extends Component { 
+// export class Bars extends Component {
 //     constructor(props){
 //         super(props);
-        
-    
+
 //     }
 
 //     render() {
@@ -32,7 +31,7 @@
 //     //             <div key={item} index={i}className='barsList'>
 //     //              <Link to={'/ShowPage/:name/'+item.name}>  <h2>{item.bar} </h2> </Link>
 //     //             </div>
-//     //         )    
+//     //         )
 //     //     })
 //     //         return (
 //     //         <div>

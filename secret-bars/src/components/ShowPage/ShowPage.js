@@ -2,19 +2,31 @@
 //has some info on bar and has option to delete
 
 import React, { Component } from "react";
-//import BarsData from '../../data/BarsSeeds.json'
+import { useParams } from 'react-router-dom'
 
-export class Bar extends Component {
+export class ShowPage extends Component {
+// constructor(props){
+//   super(props)
+
+//   this.state=({
+//     name: '',
+//     url: '',
+//     image: '',
+//     reviews: '',
+
+//   })
+// }
 
   render() {
-  //  let oneBar = BarsData.find(bar =>
-  //     bar.name === this.props.match.params.name
-  //  )
-    return <div>
-        <h3>Name: {this.props.name}</h3>
-    </div>;
+  // let { name } = useParams()
+
+  
+  // const bar = this.props.listOfbars.find(barName => barName.name === name)
+  return <div>
+        <h3>Name: {this.props.bar} </h3>
+    </div>
   }
 }
 
-export default Bar;
+export default ShowPage;
 
