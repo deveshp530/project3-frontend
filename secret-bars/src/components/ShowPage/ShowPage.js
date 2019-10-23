@@ -5,31 +5,27 @@ import React, { Component } from "react";
 //import { useParams } from 'react-router-dom'
 
 export class ShowPage extends Component {
-constructor(props){
-  super(props)
+  constructor(props) {
+    super(props);
 
-  this.state=({
-    name: '',
-    url: '',
-    image: '',
-    reviews: '',
+    this.state = {
+      name: "",
+      url: "",
+      image: "",
+      reviews: ""
+    };
+  }
 
-  })
-}
-componentDidMount(){
-
-}
   render() {
-  // let { name } = useParams()
-console.log(this.props);
-
-  
-   const bar = this.props.listOfBars.find(barName => barName.name === this.props.match.params.name)
-  return <div>
+    const bar = this.props.listOfBars.find(
+      barName => barName.name === this.props.match.params.name
+    );
+    return (
+      <div>
         <h3>Name: {bar.name} </h3>
-    </div>
+      </div>
+    );
   }
 }
 
 export default ShowPage;
-
