@@ -2,7 +2,7 @@
 //has some info on bar and has option to delete
 
 import React, { Component } from "react";
-import { useParams } from 'react-router-dom'
+//import { useParams } from 'react-router-dom'
 
 export class ShowPage extends Component {
 constructor(props){
