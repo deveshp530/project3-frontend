@@ -4,8 +4,8 @@
 
 import React, { Component } from "react";
 import {Link} from 'react-router-dom'
-import Bars from '../Bars/Bars'
-import OneBar from '../OneBar/OneBar'
+//import Bars from '../Bars/Bars'
+
 
 export class Home extends Component {
   constructor(props) {
@@ -57,8 +57,8 @@ export class Home extends Component {
         let list = this.state.listOfBars.map((item,i) => {
             return(
            <div key={item} index={i}className='barsList'>
-                <Link to={'/OneBar/' + item.name}>  <h2>{item.name} </h2> </Link>
-                <OneBar bar={item.name} listOfBars={this.state.listOfBars}/>
+                <Link to={'/' + item.name}>  <h2>{item.name} </h2> </Link>
+                {/* <OneBar bar={item.name} listOfBars={this.state.listOfBars}/> */}
                </div>
             )
         })

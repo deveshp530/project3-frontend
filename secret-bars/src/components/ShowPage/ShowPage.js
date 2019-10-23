@@ -11,7 +11,7 @@ export class Bar extends Component {
   //     bar.name === this.props.match.params.name
   //  )
     return <div>
-        <h3>Name: {this.props.listOfBars[0].name}</h3>
+        <h3>Name: {this.props.name}</h3>
     </div>;
   }
 }

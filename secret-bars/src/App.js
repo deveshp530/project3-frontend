@@ -3,7 +3,7 @@ import {Link, Route, Switch} from 'react-router-dom'
 import './App.css';
 import Home from './components/Home/Home'
 import Bars from './components/Bars/Bars'
-import OneBar from './components/OneBar/OneBar'
+import OneBar from './components/ShowPage/ShowPage'
 
 
 export class App extends Component {
@@ -27,11 +27,12 @@ export class App extends Component {
           
         <Switch>
           <Route exact path ='/' component={Home}/>
-          <Route path ='/Bars/' component ={Bars}/>
+          
           <Route 
-          path ='/OneBar/:name'
+          path ='/:name/'
           render={routerProps => (
             <OneBar
+            
             match={routerProps.match}
             />
             )}
