@@ -14,6 +14,35 @@ export class App extends Component {
     };
   }
 
+   //fetch api
+   getBars = (location) => {
+    //get bars by location
+    console.log(location)
+    let url = `https://secret-bars.herokuapp.com/yelps/${location.location}`; //showing bars from previous search
+    fetch(url)
+      .then(res => res.json())
+      .then(res => {
+        console.log(res);
+        console.log(res.businesses);
+        //update state to have new list
+        this.setState({ listOfBars: res.businesses });
+      });
+      console.log(this.state.listOfBars);
+      
+  };
+
+ setLocation = (location) => {
+   console.log(location)
+    // this.setState({ location: location });
+    if(location){
+      this.getBars(location)
+    }
+  };
+ 
+componentDidMount(){
+  //this.getBars()
+}
+
   render() {
     return (
       <div>
@@ -27,12 +56,12 @@ export class App extends Component {
             <Route
              exact path="/" 
             //  component={Home}
-            render={(props)=> <Home {...props} listOfBars={this.state.listOfBars}/>}
+            render={(props)=> <Home {...props}  listOfBars={this.state.listOfBars} setLocation={this.setLocation}/>}
             />
 
             <Route
               path="/:name/"
-              render={routerProps => <ShowPage match={routerProps.match} />}
+              render={routerProps => <ShowPage match={routerProps.match} listOfBars={this.state.listOfBars}/>}
             />
           </Switch>
         </main>
