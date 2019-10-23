@@ -5,47 +5,55 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 //import Bars from '../Bars/Bars'
+//import ShowPage from "../ShowPage/ShowPage";
 
 export class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      location: "",
-      listOfBars: []
+      location: ""
+      //listOfBars: []
     };
-    //this.bind
   }
 
   handleLocation = event => {
+    console.log(event.target);
+
+    this.props.setLocation({ location: this.state.location });
+  };
+  handleInputLocation = event => {
     this.setState({ location: event.target.value });
   };
 
-  getBars = () => {
-    let url = `https://secret-bars.herokuapp.com/yelps/${this.state.location}`; //showing bars from previous search
-    fetch(url)
-      .then(res => res.json())
-      .then(res => {
-        console.log(res);
-        console.log(res.businesses);
-        this.setState({ listOfBars: res.businesses });
-      });
-  };
- 
+  //   //fetch api
+  //   getBars = () => {
+  //     //get bars by location
+  //     let url = `https://secret-bars.herokuapp.com/yelps/${this.state.location}`; //showing bars from previous search
+  //     fetch(url)
+  //       .then(res => res.json())
+  //       .then(res => {
+  //         console.log(res);
+  //         console.log(res.businesses);
+  //         //update state to have new list
+  //         this.setState({ listOfBars: res.businesses });
+  //       });
+  //       console.log(this.state.listOfBars);
 
-  //fetch api
-  //get bars by location
-  //push bars into listOfBars
-  //update state to have new list
+  //   };
+
+  // componentDidMount(){
+  //   this.getBars()
+  // }
+
   //pass down to bars.js where it will list out each bars
   render() {
-    let list = this.state.listOfBars.map((item, i) => {
+    let list = this.props.listOfBars.map((item, i) => {
       return (
         <div key={item} index={i} className="barsList">
-          <Link to={"/" + item.name}>
+          <Link to={`/${item.name}`}>
             {" "}
             <h2>{item.name} </h2>{" "}
           </Link>
-          {/* <OneBar bar={item.name} listOfBars={this.state.listOfBars}/> */}
         </div>
       );
     });
@@ -56,12 +64,12 @@ export class Home extends Component {
         <h3> Find a new low key restaurant or bar </h3>
 
         <input
+          onChange={this.handleInputLocation}
           type="text"
-          onChange={this.handleLocation}
           placeholder="enter your location"
         />
 
-        <button type="Submit" onClick={this.getBars}>
+        <button type="Submit" onClick={this.handleLocation}>
           Search
         </button>
 
