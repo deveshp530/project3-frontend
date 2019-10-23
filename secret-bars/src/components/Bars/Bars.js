@@ -1,27 +1,28 @@
 //call api and make a list of all favorite bars. from here can edit
 import React, { Component } from 'react'
-import BarsData from '../../data/BarsData.json'
+import OneBar from '../OneBar/OneBar'
 import {Link} from 'react-router-dom'
 
 export class Bars extends Component { 
     constructor(props){
         super(props);
         
-        this.state = BarsData
+    
     }
 
     render() {
-        let list = BarsData.map((item, i) => {
-            return (
-                <div key={item} index={i}className='barsList'>
-                 <Link to={'/OneBar/'+item.name}>  <h2>{item.name} </h2> </Link>
-                </div>
-            )    
-        })
+        // let list = this.props.listOfBars.map((item,i) => {
+        //     return(
+        //    <div key={item} index={i}className='barsList'>
+        //         <Link to={'/OneBar/' + item.name}>  <h2>{item.name} </h2> </Link>
+        //         <OneBar bar={item.name} listOfBars={this.state.listOfBars}/>
+        //        </div>
+        //     )
+        // })
             return (
             <div>
                 <h1>View your list of bars below</h1>
-                {list}
+                {/* {list} */}
             </div>
         )
     }

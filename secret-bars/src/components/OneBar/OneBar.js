@@ -10,8 +10,8 @@ export class Bar extends Component {
   //  let oneBar = BarsData.find(bar =>
   //     bar.name === this.props.match.params.name
   //  )
-    return <div><h1>hello</h1>
-        {/* <h1>Name: {oneBar.name}</h1> */}
+    return <div>
+        <h3>Name: {this.props.listOfBars[0].name}</h3>
     </div>;
   }
 }

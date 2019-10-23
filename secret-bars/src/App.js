@@ -7,13 +7,13 @@ import OneBar from './components/OneBar/OneBar'
 
 
 export class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      location: "",
-      listOfBars: []
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     location: "",
+  //     listOfBars: []
+  //   };
+  // }
   
   render() {
     return (
@@ -23,9 +23,10 @@ export class App extends Component {
           <Link to ='/Bars'> Bars </Link> 
           {/* <Link to ='/OneBar'> Bar </Link>  */}
         </nav>
+        <main> 
+          
         <Switch>
           <Route exact path ='/' component={Home}/>
-          <Route path ='/myList' component ={Bars}/>
           <Route path ='/Bars/' component ={Bars}/>
           <Route 
           path ='/OneBar/:name'
@@ -33,11 +34,12 @@ export class App extends Component {
             <OneBar
             match={routerProps.match}
             />
-          )}
-          /> 
+            )}
+            /> 
           
         </Switch>
     
+            </main>
       </div>
     )
   }

@@ -4,6 +4,8 @@
 
 import React, { Component } from "react";
 import {Link} from 'react-router-dom'
+import Bars from '../Bars/Bars'
+import OneBar from '../OneBar/OneBar'
 
 export class Home extends Component {
   constructor(props) {
@@ -12,28 +14,37 @@ export class Home extends Component {
       location: "",
       listOfBars: []
     };
+    //this.bind
   }
 
   handleLocation = event => {
     this.setState({ location: event.target.value });
   };
 
+  
+    
   getBars = () => {
     let url = `https://secret-bars.herokuapp.com/yelps/${this.state.location}`; //showing bars from previous search
     fetch(url)
+    
     .then(res=>res.json())
     .then(res => {
         console.log(res)
-        console.log(res.businesses.name)
-        //const barData = res
-       // console.log(Object.keys(barData))
-        const newArray = []
-        newArray.push(res.businesses)
-        console.log(newArray);
-        this.setState({listOfBars: newArray})
+        console.log(res.businesses)
+        this.setState({listOfBars: res.businesses})
     })
+  }
+    // .then(this.barsRedirect())
+   
     //console.log(this.state.listOfBars)
-  };
+  // };
+  
+  // barsRedirect = ()=> {
+   
+  //   console.log('hello')
+
+  // }
+  
   
 
   //fetch api
@@ -47,6 +58,7 @@ export class Home extends Component {
             return(
            <div key={item} index={i}className='barsList'>
                 <Link to={'/OneBar/' + item.name}>  <h2>{item.name} </h2> </Link>
+                <OneBar bar={item.name} listOfBars={this.state.listOfBars}/>
                </div>
             )
         })
@@ -61,9 +73,12 @@ export class Home extends Component {
           onChange={this.handleLocation}
           placeholder="enter your location"
         />
-        <button type="Submit" onClick={this.getBars}>
+       
+        <button type="Submit" onClick={this.getBars} >
           Search
         </button>
+        
+        
         <div className="bars">
             <div>{list}</div>
         </div>
