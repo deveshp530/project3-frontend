@@ -20,11 +20,10 @@
 .App-link {
   color: #09d3ac;
 }
-.userModal{
+.userModal {
   display: none;
 }
 
-.newUserModal{
-  display:none;
+.newUserModal {
+  display: none;
 }
-
