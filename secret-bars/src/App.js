@@ -16,10 +16,10 @@ export class App extends Component {
   }
 
   //fetch api
-  getBars = location => {
-    //get bars by location
-    console.log(location);
-    let url = `https://secret-bars.herokuapp.com/yelps/${location.location}`; //showing bars from previous search
+  getBars = getLocation => {
+    //get bars by getLocation
+    console.log(getLocation);
+    let url = `https://secret-bars.herokuapp.com/yelps/${getLocation.location}`; //showing bars from previous search
     fetch(url)
       .then(res => res.json())
       .then(res => {
