@@ -17,7 +17,7 @@ export class Home extends Component {
   }
 
   handleLocation = event => {
-    console.log(event.target);
+    
 
     this.props.setLocation({ location: this.state.location });
   };
