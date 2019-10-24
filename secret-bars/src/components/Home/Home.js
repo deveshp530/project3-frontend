@@ -17,8 +17,6 @@ export class Home extends Component {
   }
 
   handleLocation = event => {
-    
-
     this.props.setLocation({ location: this.state.location });
   };
   handleInputLocation = event => {
