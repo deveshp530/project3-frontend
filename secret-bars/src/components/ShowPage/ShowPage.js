@@ -50,17 +50,20 @@ export class ShowPage extends Component {
         this.props.currentUser.comments.push(thisComment)
         console.log(thisComment)
         console.log(this.props.currentUser)
+        
       })
     }
     };
   setPlaceholder = event => {
     console.log(event.target.placeholder);
+    if(this.state.changed !== true){
     this.setState({ placeHolder: event.target.placeholder }, () => {
       let updateId = this.props.listOfComments.find(
         comments => comments.text === this.state.placeHolder
       );
       this.setState({ commentForUpdate: updateId });
     });
+  }
   };
   updateComment = () => {
     if(this.state.commentForUpdate !== null){
@@ -76,6 +79,18 @@ export class ShowPage extends Component {
       this.props.currentUser.comments.push(thisNewComment)
       console.log(thisNewComment);
       console.log(this.props.currentUser);
+      let userComment = document.getElementsByClassName("userComment")
+      console.log(userComment)
+     for( let i=0; i< userComment.length; i++){
+       console.log(userComment[i].innerText)
+       console.log(userComment[i].innerHTML)
+       console.log(this.state.placeHolder)
+       if(userComment[i].innerText === this.state.placeHolder){
+         userComment[i].innerText = this.state.commentForUpdate.text
+         this.setState({placeHolder: this.state.commentForUpdate.text})
+         this.setState({changed: true})
+       }
+     }
     });}
   };
   deleteComment = () => {
@@ -125,10 +140,14 @@ export class ShowPage extends Component {
       return (
         <div className="comment">
           <h4> {item.user}</h4>
-          <p> {item.text}</p>
+          <p className="userComment"> {item.text}</p>
           {item.user[0] === this.props.currentUser._id ? (
             <div>
-              <button onClick={this.showEditModal}>Edit Comment</button>
+              <button onClick={()=> {
+                
+                this.showEditModal()
+              }
+                }>Edit Comment</button>
               <div className="editCommentModal">
                 <div className="editCommentModalContainer">
                   <input
