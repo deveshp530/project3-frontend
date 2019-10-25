@@ -1,19 +1,16 @@
 //shows a single bar from dashboard when clicked . use routes and links
 //has some info on bar and has option to delete
-
 import React, { Component } from "react";
 //import { useParams } from 'react-router-dom'
 import "./ShowPage.css";
-
 export class ShowPage extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      comment: ""
+      comment: "",
+      commentForUpdate: null
     };
   }
-
   handleComment = event => {
     this.setState({ comment: event.target.value });
   };
@@ -29,7 +26,6 @@ export class ShowPage extends Component {
       }
     });
   };
-
   createComment = () => {
     if (this.state.comment !== "") {
       let newComment = {
@@ -53,8 +49,12 @@ export class ShowPage extends Component {
           this.props.currentUser.comments.push(thisComment);
         });
     }
+<<<<<<< HEAD
   };
 
+=======
+    };
+>>>>>>> 096ca4eb98a078cc996d3ee6b0de4c1e50a2b414
   setPlaceholder = event => {
     this.setState({ placeHolder: event.target.placeholder }, () => {
       let updateId = this.props.listOfComments.find(
@@ -63,8 +63,8 @@ export class ShowPage extends Component {
       this.setState({ commentForUpdate: updateId });
     });
   };
-
   updateComment = () => {
+    if(this.state.commentForUpdate !== null){
     let url = `https://secret-bars.herokuapp.com/comments/${this.state.commentForUpdate._id}`;
     fetch(url, {
       body: JSON.stringify(this.state.commentForUpdate),
@@ -74,12 +74,13 @@ export class ShowPage extends Component {
         "Content-Type": "application/json"
       }
     }).then(thisNewComment => {
-      //this.props.currentUser.comments.push(thisComment)
+      this.props.currentUser.comments.push(thisNewComment)
       console.log(thisNewComment);
       console.log(this.props.currentUser);
-    });
+    });}
   };
   deleteComment = () => {
+    if(this.state.commentForUpdate !== null){
     fetch(
       `https://secret-bars.herokuapp.com/comments/${this.state.commentForUpdate._id}`,
       {
@@ -93,8 +94,8 @@ export class ShowPage extends Component {
     ).catch(err => {
       console.error(err);
     });
+  }
   };
-
   showCommentModal = () => {
     let commentModal = document.getElementsByClassName("commentModal");
     commentModal[0].style.display = "block";
@@ -103,21 +104,19 @@ export class ShowPage extends Component {
     let commentModal = document.getElementsByClassName("commentModal");
     commentModal[0].style.display = "none";
   };
-
   closeEditModal = () => {
     let editCommentModal = document.getElementsByClassName("editCommentModal");
     editCommentModal[0].style.display = "none";
   };
   showEditModal = () => {
     let editCommentModal = document.getElementsByClassName("editCommentModal");
+    console.log(editCommentModal)
     editCommentModal[0].style.display = "block";
   };
-
   render() {
     const bar = this.props.listOfBars.find(
       barName => barName.name === this.props.match.params.name
     );
-
     let comments = this.props.listOfComments.filter(
       comment => comment.bar === this.props.match.params.name
     );
@@ -129,7 +128,6 @@ export class ShowPage extends Component {
           {item.user[0] === this.props.currentUser._id ? (
             <div>
               <button onClick={this.showEditModal}>Edit Comment</button>
-
               <div className="editCommentModal">
                 <div className="editCommentModalContainer">
                   <input
@@ -172,8 +170,12 @@ export class ShowPage extends Component {
         <h3>Phone number: {bar.display_phone}</h3>
         <h2>Number of reviews: {bar.review_count}</h2>
         <a href={bar.url}>Yelp Link</a>
+<<<<<<< HEAD
         <img className="bar-image" src={bar.image_url} alt={bar.name} />
 
+=======
+        <img src={bar.image_url} alt={bar.name} />
+>>>>>>> 096ca4eb98a078cc996d3ee6b0de4c1e50a2b414
         <div className="userShowPage">
           {this.props.email !== "" ? (
             <div>
@@ -209,5 +211,4 @@ export class ShowPage extends Component {
     );
   }
 }
-
 export default ShowPage;

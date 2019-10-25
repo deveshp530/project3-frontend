@@ -21,7 +21,6 @@ export class App extends Component {
       listOfUsers: []
     };
   }
-
   //fetch api
   getBars = getLocation => {
     //get bars by location
@@ -40,6 +39,7 @@ export class App extends Component {
   };
   //fetch backend API and create User
   createUser = () => {
+    if(this.state.username && this.state.email !==""){
     let newUser = {
       username: this.state.username,
       email: this.state.email
@@ -59,12 +59,12 @@ export class App extends Component {
       .then(body => {
         this.setState({ currentUser: body });
       });
+    }
   };
   //fetch backend API for existing User
   getUser = () => {
     let userEmail = this.state.email;
     let url = `https://secret-bars.herokuapp.com/visitors/${userEmail}`;
-
     fetch(url)
       .then(info => {
         return info.json();
@@ -73,32 +73,48 @@ export class App extends Component {
         this.setState({ currentUser: userInfo });
       });
   };
+<<<<<<< HEAD
 
   //get all comments from backend
+=======
+>>>>>>> 096ca4eb98a078cc996d3ee6b0de4c1e50a2b414
   getAllComments = () => {
     let url = "https://secret-bars.herokuapp.com/comments/all-comments";
-
     fetch(url)
       .then(info => {
+<<<<<<< HEAD
+=======
+        console.log(info);
+        return info.json();
+>>>>>>> 096ca4eb98a078cc996d3ee6b0de4c1e50a2b414
       })
       .then(allComments => {
         this.setState({ listOfComments: allComments });
       });
   };
+<<<<<<< HEAD
 
     //get all users from backend. used to display users who commented on bars
+=======
+>>>>>>> 096ca4eb98a078cc996d3ee6b0de4c1e50a2b414
   getAllUsers = () => {
     let url = "https://secret-bars.herokuapp.com/visitors/all-visitors";
-
     fetch(url)
       .then(info => {
+<<<<<<< HEAD
+=======
+        console.log(info);
+>>>>>>> 096ca4eb98a078cc996d3ee6b0de4c1e50a2b414
         return info.json();
       })
       .then(allUsers => {
         this.setState({ listOfUsers: allUsers });
       });
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> 096ca4eb98a078cc996d3ee6b0de4c1e50a2b414
   showNewUserModal = event => {
     let newModal = document.getElementsByClassName("newUserModal");
     newModal[0].style.display = "block";
@@ -107,7 +123,6 @@ export class App extends Component {
     let newModal = document.getElementsByClassName("newUserModal");
     newModal[0].style.display = "none";
   };
-
   handleNewUsername = event => {
     this.setState({ username: event.target.value });
   };
@@ -122,11 +137,9 @@ export class App extends Component {
     let userModal = document.getElementsByClassName("userModal");
     userModal[0].style.display = "none";
   };
-
   handleUserInput = event => {
     this.setState({ email: event.target.value });
   };
-
   render() {
     return (
       <div>
@@ -134,7 +147,6 @@ export class App extends Component {
           <Link to="/">Home</Link>
           <Link to="/Bars"> Bars </Link>
         </nav>
-
         <button onClick={this.showNewUserModal}>New User? </button>
         <div className="newUserModal modal">
           <div className="newUserModal-container">
@@ -180,7 +192,7 @@ export class App extends Component {
             </button>
           </div>
         </div>
-
+​
         <main>
           <Switch>
             <Route
@@ -196,7 +208,7 @@ export class App extends Component {
                 />
               )}
             />
-
+​
             <Route
               path="/:name/"
               render={routerProps => (
@@ -218,5 +230,4 @@ export class App extends Component {
     );
   }
 }
-
 export default App;
