@@ -14,14 +14,17 @@ export class App extends Component {
       username: "",
       email: "",
       currentUser: null,
-      comment: ""
+      comment: "",
+      commentUpdate: "",
+      placeHolder: "",
+      listOfComments: [],
+      listOfUsers: []
     };
   }
 
   //fetch api
   getBars = getLocation => {
-    //get bars by getLocation
-
+    //get bars by location
     let url = `https://secret-bars.herokuapp.com/yelps/${getLocation.location}`; //showing bars from previous search
     fetch(url)
       .then(res => res.json())
@@ -30,6 +33,12 @@ export class App extends Component {
         //update state to have new list
         this.setState({ listOfBars: res.businesses });
       });
+  };
+  setLocation = location => {
+    console.log(location);
+    if (location) {
+      this.getBars(location);
+    }
   };
   //fetch backend API and create User
   createUser = () => {
@@ -69,53 +78,39 @@ export class App extends Component {
       });
   };
 
-  createComment = () => {
-    let newComment = {
-      userId: this.props.currentUser,
-      bar: this.props.match.params.name,
-      text: this.state.comment
-    };
-    let url = `https://secret-bars.herokuapp.com/comments/new`;
-    fetch(url, {
-      body: JSON.stringify(newComment),
-      method: "POST",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json"
-      }
-    }).then(createdComment =>{
-      return createdComment.json()
-    }).then(thisComment =>{
-      this.props.currentUser.comments.push(thisComment)
-    })
-  };
+  getAllComments = () => {
+    let url = "https://secret-bars.herokuapp.com/comments/all-comments";
 
-  // deleteComment = () => {
-  //   fetch(`https://secret-bars.herokuapp.com/comments/${commentId}`, {
-  //     method: 'DELETE'
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   })
-  // }
+    fetch(url)
+      .then( info => {
+        console.log(info);
+        return info.json();
+      })
+      .then( allComments => {
+        this.setState({ listOfComments: allComments })
+      })
+  }
 
-  setLocation = location => {
-    console.log(location);
-    // this.setState({ location: location });
-    if (location) {
-      this.getBars(location);
-    }
-  };
+  getAllUsers = () => {
+    let url = "https://secret-bars.herokuapp.com/visitors/all-visitors";
+
+    fetch(url)
+      .then( info => {
+        console.log(info);
+        return info.json();
+      })
+      .then( allUsers => {
+        this.setState({ listOfUsers: allUsers })
+      })
+  }
 
   showNewUserModal = event => {
     let newModal = document.getElementsByClassName("newUserModal");
     newModal[0].style.display = "block";
-    console.log(newModal);
   };
   closeNewModal = event => {
     let newModal = document.getElementsByClassName("newUserModal");
     newModal[0].style.display = "none";
-    console.log(newModal);
   };
 
   handleNewUsername = event => {
@@ -127,12 +122,10 @@ export class App extends Component {
   showUserModal = event => {
     let userModal = document.getElementsByClassName("userModal");
     userModal[0].style.display = "block";
-    console.log(userModal);
   };
-  closeModal = event => {
+  closeUserModal = event => {
     let userModal = document.getElementsByClassName("userModal");
     userModal[0].style.display = "none";
-    console.log(userModal);
   };
 
   handleUserInput = event => {
@@ -145,8 +138,6 @@ export class App extends Component {
         <nav>
           <Link to="/">Home</Link>
           <Link to="/Bars"> Bars </Link>
-
-          {/* <Link to ='/OneBar'> Bar </Link>  */}
         </nav>
 
         <button onClick={this.showNewUserModal}>New User? </button>
@@ -181,10 +172,12 @@ export class App extends Component {
               type="text"
               placeholder="enter your email"
             />
-            <button
+          <button
               onClick={() => {
                 this.getUser();
-                this.closeModal();
+                this.getAllComments();
+                this.getAllUsers();
+                this.closeUserModal();
               }}
               type="Submit"
             >
@@ -213,12 +206,14 @@ export class App extends Component {
               path="/:name/"
               render={routerProps => (
                 <ShowPage
-                  match={routerProps.match}
-                  listOfBars={this.state.listOfBars}
-                  email={this.state.email}
-                  currentUser={this.state.currentUser}
-                  createComment={this.createComment}
-                  comment={this.state.comment}
+                match={routerProps.match}
+                listOfBars={this.state.listOfBars}
+                email={this.state.email}
+                currentUser={this.state.currentUser}
+                listOfUsers={this.state.listOfUsers}
+                listOfComments={this.state.listOfComments}
+                comment={this.state.comment}
+                commentUpdate={this.state.commentUpdate}
                 />
               )}
             />
