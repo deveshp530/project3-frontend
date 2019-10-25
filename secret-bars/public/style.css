@@ -1,0 +1,117 @@
+html {
+  font-family: Georgia, serif;
+  margin: -10px;
+  padding: 0;
+  background-color: rgb(230, 230, 230);
+  color: rgb(230, 230, 230);
+}
+
+/* header section */
+header {
+  /* background-color: rgb(202, 177, 144);  */
+  background: url(../../public/images/header-bottles.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* display: flex; */
+  /* align-content: right; */
+}
+
+header > img {
+  margin: 20px 0 10px 20px;
+}
+
+nav {
+  justify-content: flex-start;
+}
+
+ul {
+  display: flex;
+  border: 2px solid rgb(38, 51, 42);
+  justify-content: flex-start;
+  padding: 0 20px 0 20px;
+  /* margin: 0 0 0 50px; */
+  /* align-items: flex-end; */
+}
+
+.search {
+  align-self: center;
+  /* margin: 0 auto; */
+  /* background-color: blue; */
+}
+
+button {
+  background-color: rgb(131, 153, 131);
+}
+
+a {
+  align-content: center;
+  text-decoration: none;
+  color: rgb(230, 230, 230);
+  padding: 5px;
+}
+
+a:hover {
+  color: rgb(38, 51, 42);
+  border: 0.5px solid rgb(230, 230, 230);
+  padding: 5px;
+  background-color: rgb(230, 230, 230);
+}
+
+li {
+  padding: 10px 20px;
+  list-style: none;
+  align-self: center;
+}
+
+/* body section */
+main {
+  border: 1px solid rgb(38, 51, 42);
+  border-radius: 5px;
+  background-color: rgb(230, 230, 230);
+  margin: 15px;
+  padding: 0 20px 10px 20px;
+  color: rgb(38, 51, 42);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* background-color: yellow; */
+}
+
+div > h1 {
+  align-content: center;
+  border-bottom: 0.2px solid rgb(38, 51, 42);
+  padding: 0 0 7px 0;
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+  width: 100%;
+}
+
+.body {
+  /* min-height: 300px; */
+  /* background-color: red; */
+  display: flex;
+  justify-content: flex-start;
+}
+/* .bar {
+  margin: 5px;
+  border: 2px solid rgb(38, 51, 42);
+  padding: 10px;
+} */
+
+.copy {
+  max-width: 20%;
+  text-align: right;
+  /* background-color: blue; */
+}
+
+.main-img > img {
+  max-width: 300px;
+  float: right;
+  padding: 15px;
+  border-left: 0.2px solid rgb(38, 51, 42);
+}
+
+.footer {
+  color: rgb(38, 51, 42);
+  text-align: center;
+}
