@@ -4,7 +4,7 @@
 React, React-Router-dom was used to pass information down to different components (home, and showpage). Home component allows users to search different bars by their location. The page then renders 25 bars within the area.
 
 # Approach Taken
-We knew what each page should look like, based on the pictures in the planning directory in the back-end repository. So we based everything off of that
+We knew what each page should look like, based on the pictures in the planning directory in the [back-end repository](https://github.com/deveshp530/project3-team7). So we based everything off of that
 
 # Features
 Application has full CRUD on comments, and can create a user to show their comments on various bars they search
