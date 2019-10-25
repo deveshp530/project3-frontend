@@ -43,7 +43,7 @@ export class Home extends Component {
           Search
         </button>
         <div className="bars">
-          <div>{list}</div>
+          <div>{list.reverse()}</div>
         </div>
       </div>
     );
