@@ -17,8 +17,8 @@ export class ShowPage extends Component {
   handleComment = event => {
     this.setState({ comment: event.target.value });
   };
+
   handleEdit = event => {
-    console.log(this.state.commentForUpdate);
     this.setState({
       commentForUpdate: {
         bar: this.state.commentForUpdate.bar,
@@ -31,14 +31,12 @@ export class ShowPage extends Component {
   };
 
   createComment = () => {
-    if(this.state.comment !== ""){
+    if (this.state.comment !== "") {
       let newComment = {
-        
         bar: this.props.match.params.name,
         text: this.state.comment,
         user: this.props.currentUser._id
       };
-      console.log(newComment)
       let url = `https://secret-bars.herokuapp.com/comments/${newComment.user}`;
       fetch(url, {
         body: JSON.stringify(newComment),
@@ -47,19 +45,17 @@ export class ShowPage extends Component {
           Accept: "application/json, text/plain, */*",
           "Content-Type": "application/json"
         }
-      }).then(createdComment =>{
-        console.log(createdComment)
-        return createdComment.json()
-      }).then(thisComment =>{
-        this.props.currentUser.comments.push(thisComment)
-        console.log(thisComment)
-        console.log(this.props.currentUser)
       })
+        .then(createdComment => {
+          return createdComment.json();
+        })
+        .then(thisComment => {
+          this.props.currentUser.comments.push(thisComment);
+        });
     }
-    };
+  };
 
   setPlaceholder = event => {
-    console.log(event.target.placeholder);
     this.setState({ placeHolder: event.target.placeholder }, () => {
       let updateId = this.props.listOfComments.find(
         comments => comments.text === this.state.placeHolder
@@ -95,7 +91,7 @@ export class ShowPage extends Component {
         }
       }
     ).catch(err => {
-      console.log(err);
+      console.error(err);
     });
   };
 
@@ -125,9 +121,7 @@ export class ShowPage extends Component {
     let comments = this.props.listOfComments.filter(
       comment => comment.bar === this.props.match.params.name
     );
-    console.log(comments);
     let showComments = comments.map(item => {
-      console.log(item.user);
       return (
         <div className="comment">
           <h4> {item.user}</h4>
@@ -178,7 +172,7 @@ export class ShowPage extends Component {
         <h3>Phone number: {bar.display_phone}</h3>
         <h2>Number of reviews: {bar.review_count}</h2>
         <a href={bar.url}>Yelp Link</a>
-        <img src={bar.image_url} alt={bar.name} />
+        <img className="bar-image" src={bar.image_url} alt={bar.name} />
 
         <div className="userShowPage">
           {this.props.email !== "" ? (
@@ -208,9 +202,7 @@ export class ShowPage extends Component {
               </div>
             </div>
           ) : (
-            <div>
-              <p>hello</p>
-            </div>
+            <div></div>
           )}
         </div>
       </div>

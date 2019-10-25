@@ -29,13 +29,11 @@ export class App extends Component {
     fetch(url)
       .then(res => res.json())
       .then(res => {
-        console.log(res.businesses);
         //update state to have new list
         this.setState({ listOfBars: res.businesses });
       });
   };
   setLocation = location => {
-    console.log(location);
     if (location) {
       this.getBars(location);
     }
@@ -46,7 +44,6 @@ export class App extends Component {
       username: this.state.username,
       email: this.state.email
     };
-    console.log(newUser);
     let url = `https://secret-bars.herokuapp.com/visitors/new`;
     fetch(url, {
       body: JSON.stringify(newUser),
@@ -70,7 +67,6 @@ export class App extends Component {
 
     fetch(url)
       .then(info => {
-        console.log(info);
         return info.json();
       })
       .then(userInfo => {
@@ -78,31 +74,30 @@ export class App extends Component {
       });
   };
 
+  //get all comments from backend
   getAllComments = () => {
     let url = "https://secret-bars.herokuapp.com/comments/all-comments";
 
     fetch(url)
-      .then( info => {
-        console.log(info);
-        return info.json();
+      .then(info => {
       })
-      .then( allComments => {
-        this.setState({ listOfComments: allComments })
-      })
-  }
+      .then(allComments => {
+        this.setState({ listOfComments: allComments });
+      });
+  };
 
+    //get all users from backend. used to display users who commented on bars
   getAllUsers = () => {
     let url = "https://secret-bars.herokuapp.com/visitors/all-visitors";
 
     fetch(url)
-      .then( info => {
-        console.log(info);
+      .then(info => {
         return info.json();
       })
-      .then( allUsers => {
-        this.setState({ listOfUsers: allUsers })
-      })
-  }
+      .then(allUsers => {
+        this.setState({ listOfUsers: allUsers });
+      });
+  };
 
   showNewUserModal = event => {
     let newModal = document.getElementsByClassName("newUserModal");
@@ -172,7 +167,7 @@ export class App extends Component {
               type="text"
               placeholder="enter your email"
             />
-          <button
+            <button
               onClick={() => {
                 this.getUser();
                 this.getAllComments();
@@ -206,14 +201,14 @@ export class App extends Component {
               path="/:name/"
               render={routerProps => (
                 <ShowPage
-                match={routerProps.match}
-                listOfBars={this.state.listOfBars}
-                email={this.state.email}
-                currentUser={this.state.currentUser}
-                listOfUsers={this.state.listOfUsers}
-                listOfComments={this.state.listOfComments}
-                comment={this.state.comment}
-                commentUpdate={this.state.commentUpdate}
+                  match={routerProps.match}
+                  listOfBars={this.state.listOfBars}
+                  email={this.state.email}
+                  currentUser={this.state.currentUser}
+                  listOfUsers={this.state.listOfUsers}
+                  listOfComments={this.state.listOfComments}
+                  comment={this.state.comment}
+                  commentUpdate={this.state.commentUpdate}
                 />
               )}
             />

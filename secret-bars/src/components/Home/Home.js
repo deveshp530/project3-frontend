@@ -22,7 +22,6 @@ export class Home extends Component {
     this.setState({ location: event.target.value });
   };
 
- 
   //pass down to bars.js where it will list out each bars
   render() {
     let list = this.props.listOfBars.map((item, i) => {
