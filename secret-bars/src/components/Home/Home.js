@@ -18,10 +18,6 @@ export class Home extends Component {
   handleInputLocation = event => {
     this.setState({ location: event.target.value });
   };
-<<<<<<< HEAD
-
-=======
->>>>>>> 096ca4eb98a078cc996d3ee6b0de4c1e50a2b414
   //pass down to bars.js where it will list out each bars
   render() {
     let list = this.props.listOfBars.map((item, i) => {

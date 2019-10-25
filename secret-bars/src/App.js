@@ -28,11 +28,13 @@ export class App extends Component {
     fetch(url)
       .then(res => res.json())
       .then(res => {
+        console.log(res.businesses);
         //update state to have new list
         this.setState({ listOfBars: res.businesses });
       });
   };
   setLocation = location => {
+    console.log(location);
     if (location) {
       this.getBars(location);
     }
@@ -44,6 +46,7 @@ export class App extends Component {
       username: this.state.username,
       email: this.state.email
     };
+    console.log(newUser);
     let url = `https://secret-bars.herokuapp.com/visitors/new`;
     fetch(url, {
       body: JSON.stringify(newUser),
@@ -67,54 +70,35 @@ export class App extends Component {
     let url = `https://secret-bars.herokuapp.com/visitors/${userEmail}`;
     fetch(url)
       .then(info => {
+        console.log(info);
         return info.json();
       })
       .then(userInfo => {
         this.setState({ currentUser: userInfo });
       });
   };
-<<<<<<< HEAD
-
-  //get all comments from backend
-=======
->>>>>>> 096ca4eb98a078cc996d3ee6b0de4c1e50a2b414
   getAllComments = () => {
     let url = "https://secret-bars.herokuapp.com/comments/all-comments";
     fetch(url)
       .then(info => {
-<<<<<<< HEAD
-=======
         console.log(info);
         return info.json();
->>>>>>> 096ca4eb98a078cc996d3ee6b0de4c1e50a2b414
       })
       .then(allComments => {
         this.setState({ listOfComments: allComments });
       });
   };
-<<<<<<< HEAD
-
-    //get all users from backend. used to display users who commented on bars
-=======
->>>>>>> 096ca4eb98a078cc996d3ee6b0de4c1e50a2b414
   getAllUsers = () => {
     let url = "https://secret-bars.herokuapp.com/visitors/all-visitors";
     fetch(url)
       .then(info => {
-<<<<<<< HEAD
-=======
         console.log(info);
->>>>>>> 096ca4eb98a078cc996d3ee6b0de4c1e50a2b414
         return info.json();
       })
       .then(allUsers => {
         this.setState({ listOfUsers: allUsers });
       });
   };
-<<<<<<< HEAD
-
-=======
->>>>>>> 096ca4eb98a078cc996d3ee6b0de4c1e50a2b414
   showNewUserModal = event => {
     let newModal = document.getElementsByClassName("newUserModal");
     newModal[0].style.display = "block";
