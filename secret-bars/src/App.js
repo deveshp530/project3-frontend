@@ -4,7 +4,7 @@ import "./App.css";
 import Home from "./components/Home/Home";
 //import Bars from './components/Bars/Bars'
 import ShowPage from "./components/ShowPage/ShowPage";
-​
+
 export class App extends Component {
   constructor(props) {
     super(props);
@@ -21,7 +21,6 @@ export class App extends Component {
       listOfUsers: []
     };
   }
-​
   //fetch api
   getBars = getLocation => {
     //get bars by location
@@ -42,6 +41,7 @@ export class App extends Component {
   };
   //fetch backend API and create User
   createUser = () => {
+    if(this.state.username && this.state.email !==""){
     let newUser = {
       username: this.state.username,
       email: this.state.email
@@ -62,12 +62,12 @@ export class App extends Component {
       .then(body => {
         this.setState({ currentUser: body });
       });
+    }
   };
   //fetch backend API for existing User
   getUser = () => {
     let userEmail = this.state.email;
     let url = `https://secret-bars.herokuapp.com/visitors/${userEmail}`;
-​
     fetch(url)
       .then(info => {
         console.log(info);
@@ -77,10 +77,8 @@ export class App extends Component {
         this.setState({ currentUser: userInfo });
       });
   };
-​
   getAllComments = () => {
     let url = "https://secret-bars.herokuapp.com/comments/all-comments";
-​
     fetch(url)
       .then(info => {
         console.log(info);
@@ -90,10 +88,8 @@ export class App extends Component {
         this.setState({ listOfComments: allComments });
       });
   };
-​
   getAllUsers = () => {
     let url = "https://secret-bars.herokuapp.com/visitors/all-visitors";
-​
     fetch(url)
       .then(info => {
         console.log(info);
@@ -103,7 +99,6 @@ export class App extends Component {
         this.setState({ listOfUsers: allUsers });
       });
   };
-​
   showNewUserModal = event => {
     let newModal = document.getElementsByClassName("newUserModal");
     newModal[0].style.display = "block";
@@ -112,7 +107,6 @@ export class App extends Component {
     let newModal = document.getElementsByClassName("newUserModal");
     newModal[0].style.display = "none";
   };
-​
   handleNewUsername = event => {
     this.setState({ username: event.target.value });
   };
@@ -127,11 +121,9 @@ export class App extends Component {
     let userModal = document.getElementsByClassName("userModal");
     userModal[0].style.display = "none";
   };
-​
   handleUserInput = event => {
     this.setState({ email: event.target.value });
   };
-​
   render() {
     return (
       <div>
@@ -139,7 +131,6 @@ export class App extends Component {
           <Link to="/">Home</Link>
           <Link to="/Bars"> Bars </Link>
         </nav>
-​
         <button onClick={this.showNewUserModal}>New User? </button>
         <div className="newUserModal modal">
           <div className="newUserModal-container">
@@ -223,5 +214,4 @@ export class App extends Component {
     );
   }
 }
-​
 export default App;
