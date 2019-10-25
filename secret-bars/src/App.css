@@ -27,3 +27,11 @@
 .newUserModal {
   display: none;
 }
+
+.editCommentModal {
+  display: none;
+}
+
+.commentModal{
+  display: none;
+}
