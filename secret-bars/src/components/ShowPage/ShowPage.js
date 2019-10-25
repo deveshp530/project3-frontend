@@ -190,6 +190,7 @@ export class ShowPage extends Component {
                     onClick={() => {
                       this.createComment();
                       this.closeCommentModal();
+                      window.location.reload(false);
                     }}
                     type="Submit"
                   >
