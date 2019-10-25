@@ -1,8 +1,10 @@
 # project3-frontend
 
-# Technologies Used
-React, React-Router-dom was used to pass information down to different components (home, and showpage). Home component allows users to search different bars by their location. The page then renders 25 bars within the area.
+# Description
+An application for users to find 'secret bars' in their area. The user can search by location, and will return 25 bars with the least amount of reviews to the most reviews
 
+# Technologies Used
+Application was built using the M.E.R.N stack from scratch. We used yelps API to search by location and category of 'bar' so only bars will show up. We can change the parameters of search so users can search for anything. Ff you have an interesting idea for someone to search, let us know!! Application has ful CRUD on comments, and can create different users. Due to time restraint, we were not able to offer authentication. So instead, we just made users create an account with their name and email.
 # Approach Taken
 We knew what each page should look like, based on the pictures in the planning directory in the [back-end repository](https://github.com/deveshp530/project3-team7). So we based everything off of that
 
