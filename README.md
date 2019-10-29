@@ -16,3 +16,6 @@ Clone this repo, and change directories. When in the current folder, should run 
 
 # Unsolved problems
 In the beginning we were struggling to pass information down to the showpage, but with some help we got it figured outWhenever you create a new comment, or want to delete a comment, you have to refresh the page in order to see that the comment was updated/deleted. But when you refresh the page, you get a `TypeError: cannot read name of undefined`. Im guessing this error is that the state of the bar is not saved when you refresh the page.
+
+# Disclaimer
+App has some bugs that need to be fixed, but still works as intended.
